@@ -34,10 +34,11 @@ const Services = () => {
         transition={{ duration: 0.5, delay: 0.7 }}
         className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
       >
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium
-        eius alias neque, officia hic sint voluptates commodi cumque quas quo
-        quam deserunt eos repudiandae tenetur minus eligendi libero
-        reprehenderit soluta?
+        We deliver tailored web solutions with a strong focus on innovation,
+        performance, and customer satisfaction. Our expertise spans modern
+        frontend development, scalable backend systems, and seamless user
+        experiences, ensuring high-quality, result-driven outcomes. Let me know
+        if you'd like any refinements!
       </motion.p>
       <motion.div
         initial={{ opacity: 0 }}

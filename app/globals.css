@@ -5,3 +5,23 @@
 * {
   font-family: Outfit;
 }
+
+/* 3D Flip Card Utilities */
+.perspective {
+  perspective: 1200px;
+}
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+.rotate-y-180 {
+  transform: rotateY(180deg);
+}
+.backface-hidden {
+  backface-visibility: hidden;
+}
+.transition-transform {
+  transition: transform 0.5s;
+}
+.group:hover .group-hover\:rotate-y-180 {
+  transform: rotateY(180deg);
+}

@@ -1,3 +1,9 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
+const colors = require("tailwindcss/colors");
+const {
+  default: flattenColorPalette,
+} = require("tailwindcss/lib/util/flattenColorPalette");
+
 /** @type {import('tailwindcss').Config} */
 export default {
   content: [
@@ -10,7 +16,7 @@ export default {
       colors: {
         lightHover: "#fcf4ff",
         darkHover: "#2a004a",
-        dartTheme: "#11001F",
+        dartTheme: "#11001F", // Keeping your dark theme color
       },
       fontFamily: {
         Outfit: ["Outfit", "sans-serif"],
@@ -25,7 +31,19 @@ export default {
       },
     },
   },
-  darkMode: "selector",
+  darkMode: "selector", // Keeping your previous dark mode setting
 
-  plugins: [],
+  plugins: [addVariablesForColors],
 };
+
+// ✅ Keeping Your Theme But Adding CSS Variables
+function addVariablesForColors({ addBase, theme }) {
+  let allColors = flattenColorPalette(theme("colors"));
+  let newVars = Object.fromEntries(
+    Object.entries(allColors).map(([key, val]) => [`--${key}`, val])
+  );
+
+  addBase({
+    ":root": newVars, // Adds color variables
+  });
+}

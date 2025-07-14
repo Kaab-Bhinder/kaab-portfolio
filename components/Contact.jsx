@@ -34,92 +34,109 @@ const Contact = () => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="w-full px-[12%] py-10 scroll-mt-20  bg-[url('/footer-bg-color.png')] bg-no-repeat bg-center bg-[length:90%_auto] dark:bg-none"
+      className="w-full px-[4%] py-16 scroll-mt-20"
       id="contact"
     >
-      <motion.h4
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.3, delay: 0.5 }}
-        className="text-center mb-2 text-lg font-Ovo"
-      >
-        Contact With Me
-      </motion.h4>
-      <motion.h2
-        initial={{ y: -20, opacity: 0 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.5 }}
-        className="text-center text-5xl font-Ovo"
-      >
-        Get In Touch
-      </motion.h2>
-      <motion.p
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.7, delay: 0.5 }}
-        className="text-center max-w-2xl mx-auto mt-5 mb-12 font-Ovo"
-      >
-        Lorem ipsum, dolor sit amet consectetur adipisicing elit. Accusantium
-        eius alias neque, officia hic sint voluptates commodi cumque quas quo
-        quam deserunt eos repudiandae tenetur minus eligendi libero
-        reprehenderit soluta?
-      </motion.p>
-      <motion.form
-        initial={{ opacity: 0 }}
-        whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.9, delay: 0.5 }}
-        onSubmit={onSubmit}
-        className="max-w-2xl mx-auto"
-      >
-        <div className="grid grid-cols-auto gap-6 mt-10 mb-8">
-          <motion.input
-            initial={{ x: -50, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.1, delay: 0.6 }}
-            name="name"
-            type="text"
-            placeholder="Enter your name"
-            required
-            className="flex-1 p-3 outline-none border-[0.50px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
-          />
-
-          <motion.input
-            initial={{ x: 50, opacity: 0 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            transition={{ duration: 1.2, delay: 0.6 }}
-            name="email"
-            type="email"
-            placeholder="Enter your email"
-            required
-            className="flex-1 p-3 outline-none border-[0.50px] border-gray-400 rounded-md bg-white dark:bg-darkHover/30 dark:border-white/90"
-          />
-        </div>
-        <motion.textarea
-          initial={{ y: 100, opacity: 0 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1.3, delay: 0.6 }}
-          name="message"
-          className="w-full p-4 outline-none border-[0.50px] border-gray-400 rounded-md bg-white mb-6 dark:bg-darkHover/30 dark:border-white/90"
-          rows="6"
-          placeholder="Enter your message"
-          required
-        />
-
-        <motion.button
-          whileHover={{ scale: 1.05 }}
-          transition={{ duration: 0.3 }}
-          className="py-3 px-8 w-max flex items-center justify-between gap-2 bg-black/80 text-white rounded-full mx-auto hover:bg-black duration-500 dark:bg-transparent dark:border-[0.5px] dark:hover:bg-darkHover"
-          type="submit"
+      <div className="max-w-6xl mx-auto flex flex-col md:flex-row items-stretch gap-12 relative z-10">
+        <motion.div
+          initial={{ x: -50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1.2 }}
+          className="w-full md:w-1/2 space-y-8 px-6 py-10 bg-white dark:bg-[#18192a] rounded-2xl shadow-lg flex flex-col items-center md:items-start"
         >
-          Submit now
-          <Image
-            src={assets.right_arrow_white}
-            alt="right arrow"
-            className="w-4"
-          />
-        </motion.button>
-        <p className="mt-4">{result}</p>
-      </motion.form>
+          <h1 className="text-2xl font-semibold text-indigo-800 dark:text-blue-300 mb-4 flex items-center gap-2">
+            Contact Details
+          </h1>
+          <div className="flex flex-col gap-6 w-full mt-6">
+            <div className="flex flex-col items-start gap-1">
+              <span className="text-base text-gray-500 dark:text-gray-400 font-semibold">
+                Phone
+              </span>
+              <span className="text-lg text-gray-700 dark:text-gray-300">
+                +92 318 0943134
+              </span>
+            </div>
+            <div className="flex flex-col items-start gap-1">
+              <span className="text-base text-gray-500 dark:text-gray-400 font-semibold">
+                Email
+              </span>
+              <a
+                href="mailto:kaabbhinder28@gmail.com"
+                className="text-lg text-gray-700 dark:text-gray-300 underline"
+              >
+                kaabbhinder28@gmail.com
+              </a>
+            </div>
+            <div className="flex flex-col items-start gap-1">
+              <span className="text-base text-gray-500 dark:text-gray-400 font-semibold">
+                LinkedIn
+              </span>
+              <a
+                href="https://www.linkedin.com/in/muhammad-kaab-bhinder-a5b663332/"
+                target="_blank"
+                className="text-lg text-gray-700 dark:text-gray-300 underline"
+              >
+                LinkedIn Profile
+              </a>
+            </div>
+          </div>
+        </motion.div>
+        <motion.div
+          initial={{ x: 50, opacity: 0 }}
+          whileInView={{ x: 0, opacity: 1 }}
+          transition={{ duration: 1 }}
+          className="w-full md:w-1/2 px-2"
+        >
+          <motion.form
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.9, delay: 0.5 }}
+            onSubmit={onSubmit}
+            className="w-full max-w-lg bg-white dark:bg-[#18192a] rounded-3xl shadow-2xl p-10 flex flex-col gap-6 border border-gray-200 dark:border-gray-700 relative"
+          >
+            <div className="flex flex-col gap-4">
+              <input
+                name="name"
+                type="text"
+                placeholder="Your Name"
+                required
+                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#23243a] text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300 outline-none transition-all duration-200"
+              />
+              <input
+                name="email"
+                type="email"
+                placeholder="Your Email"
+                required
+                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#23243a] text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300 outline-none transition-all duration-200"
+              />
+              <textarea
+                name="message"
+                rows="5"
+                placeholder="Your Message"
+                required
+                className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-600 bg-white dark:bg-[#23243a] text-gray-900 dark:text-white focus:ring-2 focus:ring-blue-300 outline-none transition-all duration-200"
+              />
+            </div>
+            <motion.button
+              whileHover={{ scale: 1.08 }}
+              transition={{ duration: 0.3 }}
+              className="py-3 px-8 flex items-center gap-2 bg-[#11001F] text-white font-bold rounded-full mx-auto shadow-lg hover:bg-[#2a004a] duration-300 dark:text-white dark:bg-[#11001F] dark:hover:bg-[#2a004a]"
+              type="submit"
+            >
+              Submit now
+              <Image
+                src={assets.right_arrow_white}
+                alt="right arrow"
+                width={16}
+                height={16}
+              />
+            </motion.button>
+            <p className="mt-2 text-center text-indigo-700 dark:text-blue-300 font-semibold min-h-[24px]">
+              {result}
+            </p>
+          </motion.form>
+        </motion.div>
+      </div>
     </motion.div>
   );
 };

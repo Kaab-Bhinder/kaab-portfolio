@@ -28,16 +28,17 @@ const About = ({ isDarkMode }) => {
       >
         About Me
       </motion.h2>
+
       <motion.div
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.5 }}
         className="flex  align-items: flex-start justify-start w-full flex-col lg:flex-row  gap-20 my-20 "
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.6 }}
+          transition={{ duration: 0.5 }}
           className="relative mb-20 w-64 sm:w-80 rounded-3xl max-w-none"
         >
           <Image
@@ -116,14 +117,19 @@ const About = ({ isDarkMode }) => {
             transition={{ duration: 0.6, delay: 1.5 }}
             className="flex items-center gap-3 sm:gap-5"
           >
-            {toolsData.map((tool, ind) => {
+            {toolsData.map(({ tool, title }, ind) => {
               return (
                 <motion.li
                   whileHover={{ scale: 1.1 }}
                   className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500"
                   key={ind}
                 >
-                  <Image src={tool} alt="Tool" className="w-5 sm:w-7" />
+                  <Image
+                    src={tool}
+                    alt="Tool"
+                    title={title}
+                    className="w-5 sm:w-7"
+                  />
                 </motion.li>
               );
             })}

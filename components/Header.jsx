@@ -2,6 +2,7 @@ import { assets } from "@/assets/assets";
 import Image from "next/image";
 import React from "react";
 import { motion } from "motion/react";
+import { TextGenerateEffect } from "./ui/text-generate-effect";
 
 const Header = () => {
   return (
@@ -14,7 +15,7 @@ const Header = () => {
         <Image
           src={assets.profile_img}
           alt=""
-          className="w-32 h-32 rounded-full object-cover"
+          className="w-32 mt-20 h-32 rounded-full object-cover"
         ></Image>
       </motion.div>
       <motion.h3
@@ -35,7 +36,7 @@ const Header = () => {
         Full Stack Web Developer
       </motion.h1>
       <motion.p
-        className="text-lg"
+        className="max-w-2xl"
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.6, delay: 1.2 }}
@@ -67,7 +68,7 @@ const Header = () => {
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          href="/sample-resume.pdf"
+          href="/resume.pdf"
           download
           className="px-10 py-3 border rounded-full border-gray-500 flex items-center gap-2 dark:bg-white dark:text-black"
         >
