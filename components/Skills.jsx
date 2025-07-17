@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { assets } from "@/assets/assets";
 import programmingIcon from "../assets/algorithm.png";
@@ -118,6 +118,11 @@ const skillCategories = [
 
 const Skills = () => {
   const [hovered, setHovered] = useState(null);
+  const [flipped, setFlipped] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+  }, []);
   return (
     <section className="w-full px-[12%] py-10 scroll-mt-20" id="skills">
       <h2 className="text-center text-5xl font-Ovo mb-8">Skills</h2>
@@ -125,19 +130,30 @@ const Skills = () => {
         {skillCategories.map((cat, idx) => (
           <motion.div
             key={cat.title}
-            className="relative border-2 rounded-2xl shadow-lg overflow-hidden cursor-pointer group flex flex-col items-center justify-center min-h-[180px] transition-all duration-300"
-            onMouseEnter={() => setHovered(idx)}
-            onMouseLeave={() => setHovered(null)}
-            whileHover={{
-              y: 8,
-              boxShadow: "0 8px 32px 0 rgba(31,38,135,0.10)",
-            }}
+            className={`relative border-2 rounded-2xl shadow-lg overflow-hidden cursor-pointer group flex flex-col items-center justify-center min-h-[320px] transition-all duration-300${
+              isMobile && flipped === idx ? " bg-blue-50 dark:bg-blue-900" : ""
+            }`}
+            onMouseEnter={() => !isMobile && setHovered(idx)}
+            onMouseLeave={() => !isMobile && setHovered(null)}
+            onClick={
+              isMobile
+                ? () => setFlipped(flipped === idx ? null : idx)
+                : undefined
+            }
+            whileHover={
+              !isMobile
+                ? {
+                    y: 8,
+                    boxShadow: "0 8px 32px 0 rgba(31,38,135,0.10)",
+                  }
+                : {}
+            }
             transition={{ duration: 0.4, type: "spring" }}
           >
             <div className="w-full h-full flex flex-col items-center justify-center p-6 transition-all duration-300">
               <motion.div
                 initial={{ scale: 1 }}
-                animate={{ scale: hovered === idx ? 1.1 : 1 }}
+                animate={{ scale: !isMobile && hovered === idx ? 1.1 : 1 }}
                 className="mb-3"
               >
                 {cat.icon && cat.icon}
@@ -145,8 +161,14 @@ const Skills = () => {
               <h3 className="text-xl font-bold text-gray-900 dark:text-gray-100 mb-2 text-center drop-shadow">
                 {cat.title}
               </h3>
+              {isMobile && flipped !== idx && (
+                <span className="block text-base font-bold text-blue-600 mt-2 border-t border-blue-200 pt-2">
+                  Tap to see more
+                </span>
+              )}
               <AnimatePresence>
-                {hovered === idx && (
+                {((!isMobile && hovered === idx) ||
+                  (isMobile && flipped === idx)) && (
                   <motion.div
                     initial={{ y: -40, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}

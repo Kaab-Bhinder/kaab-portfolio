@@ -1,11 +1,16 @@
 import { assets, workData } from "@/assets/assets";
 import Image from "next/image";
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "motion/react";
 import { CanvasRevealEffect } from "./ui/canvas-reveal-effect";
 import { CardSpotlight } from "./ui/card-spotlight";
 
 const Work = ({ isDarkMode }) => {
+  const [flippedIndex, setFlippedIndex] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
+  useEffect(() => {
+    setIsMobile(window.innerWidth < 640);
+  }, []);
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -48,21 +53,35 @@ const Work = ({ isDarkMode }) => {
         className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 my-10 mx-auto dark:text-black"
       >
         {workData.map((project, ind) => {
+          const isFlipped = isMobile && flippedIndex === ind;
           return (
             <motion.div
-              whileHover={{
-                scale: 1.04,
-                y: -8,
-                boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
-              }}
+              onClick={() =>
+                isMobile && setFlippedIndex(isFlipped ? null : ind)
+              }
+              whileHover={
+                !isMobile
+                  ? {
+                      scale: 1.04,
+                      y: -8,
+                      boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
+                    }
+                  : {}
+              }
               transition={{ duration: 0.35, type: "spring", stiffness: 120 }}
-              className="relative group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-[#18192a] border border-gray-200 dark:border-gray-700 flex flex-col items-center justify-end min-h-[340px] h-full transition-all duration-300 hover:border-blue-400 dark:hover:border-blue-300"
+              className="relative group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-[#18192a] border border-gray-200 dark:border-gray-700 flex flex-col items-center justify-end min-h-[390px] h-full transition-all duration-300 hover:border-blue-400 dark:hover:border-blue-300"
               key={ind}
             >
               <div className="group perspective w-full h-full">
                 <motion.div
-                  className="relative w-full h-full preserve-3d transition-transform group-hover:rotate-y-180"
-                  style={{ minHeight: 340 }}
+                  className={`relative w-full h-full preserve-3d transition-transform ${
+                    isMobile
+                      ? isFlipped
+                        ? "rotate-y-180"
+                        : ""
+                      : "group-hover:rotate-y-180"
+                  }`}
+                  style={{ minHeight: 390 }}
                 >
                   {/* Front Face */}
                   <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-[#18192a] border border-gray-200 dark:border-gray-700 flex flex-col items-center justify-end backface-hidden">
@@ -71,7 +90,7 @@ const Work = ({ isDarkMode }) => {
                       alt={project.title}
                       width={400}
                       height={240}
-                      className="object-cover w-full h-48 group-hover:scale-105 transition-transform duration-500"
+                      className="object-cover w-full h-48 transition-transform duration-500"
                     />
                     <div className="relative z-20 p-5 w-full flex flex-col items-center justify-center text-center">
                       <a
@@ -86,6 +105,11 @@ const Work = ({ isDarkMode }) => {
                       <p className="text-sm text-gray-700 dark:text-gray-200 mb-4 drop-shadow">
                         {project.description}
                       </p>
+                      {isMobile && (
+                        <span className="block text-base font-bold text-blue-600 mt-2 border-t border-blue-200 pt-2">
+                          Tap to see more
+                        </span>
+                      )}
                       <a
                         href={project.link}
                         target="_blank"

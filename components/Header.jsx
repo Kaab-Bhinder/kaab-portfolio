@@ -53,7 +53,7 @@ const Header = () => {
         these skills to create innovative, optimized software solutions that
         meet a variety of technical challenges.
       </motion.p>
-      <div className="flex flex-col sm:flex-row gap-4 mt-4 items-center">
+      <div className="flex flex-col sm:flex-row gap-4 mt-4 items-center mb-14">
         <motion.a
           initial={{ y: 30, opacity: 0 }}
           whileInView={{ y: 0, opacity: 1 }}

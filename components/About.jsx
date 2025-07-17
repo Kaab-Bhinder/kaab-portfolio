@@ -9,7 +9,7 @@ const About = ({ isDarkMode }) => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 10, delay: 0.5 }}
-      className="w-full px-2 sm:px-8 md:px-[12%] py-10 scroll-mt-20 overflow-x-hidden max-w-full"
+      className="w-full px-4 sm:px-8 md:px-[12%] py-10 scroll-mt-20 overflow-x-hidden max-w-full"
       id="about"
     >
       <motion.h4
@@ -33,13 +33,13 @@ const About = ({ isDarkMode }) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex flex-col items-center justify-center w-full lg:flex-row lg:items-start lg:justify-start gap-20 my-20"
+        className="flex flex-col items-center justify-center w-full lg:flex-row lg:items-start lg:justify-start gap-6 sm:gap-10 md:gap-20 my-10 md:my-20"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.5 }}
-          className="relative mb-20 w-64 sm:w-80 rounded-3xl max-w-none"
+          className="relative mb-10 md:mb-20 w-48 sm:w-64 md:w-80 rounded-3xl max-w-none"
         >
           <Image
             src={assets.user_image}
@@ -51,11 +51,11 @@ const About = ({ isDarkMode }) => {
           initial={{ opacity: 0 }}
           whileInView={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="flex-1"
+          className="flex-1 w-full max-w-2xl"
         >
-          <p className="mb-10 max-w-2xl font-Ovo">
+          <p className="mb-10 font-Ovo text-base sm:text-lg leading-relaxed text-justify sm:text-left">
             I’m <strong>Muhammad Kaab Bhinder</strong>, doing{" "}
-            <strong>Bachelor of Computer Science (BSCS)</strong>. . Currently, I
+            <strong>Bachelor of Computer Science (BSCS)</strong>. Currently, I
             am focused on refining my expertise in <strong>React</strong> and{" "}
             <strong>Next.js</strong> by working on various projects aimed at
             creating scalable and practical solutions. My passion extends to
@@ -79,7 +79,7 @@ const About = ({ isDarkMode }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="grid grid-cols-1 sm:grid-cols-3 gap-6 max-w-2xl"
+            className="grid grid-cols-1 sm:grid-cols-3 gap-6"
           >
             {infoList.map(({ icon, iconDark, title, description }, index) => {
               return (
@@ -115,21 +115,27 @@ const About = ({ isDarkMode }) => {
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex items-center gap-3 sm:gap-5"
+            className="flex flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 max-w-2xl mx-auto mt-6 mb-2"
           >
             {toolsData.map(({ tool, title }, ind) => {
               return (
                 <motion.li
-                  whileHover={{ scale: 1.1 }}
-                  className="flex items-center justify-center w-12 sm:w-14 aspect-square border border-gray-400 rounded-lg cursor-pointer hover:bg-lightHover hover:-translate-y-1 duration-500"
+                  whileHover={{
+                    scale: 1.08,
+                    boxShadow: "0 0 16px 2px rgba(80,120,255,0.25)",
+                  }}
+                  className="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-xl border border-gray-400 cursor-pointer bg-white dark:bg-[#18192a] dark:border-white shadow-md hover:shadow-lg transition-all duration-300"
                   key={ind}
                 >
                   <Image
                     src={tool}
                     alt="Tool"
                     title={title}
-                    className="w-5 sm:w-7"
+                    className="w-8 sm:w-10 mb-1"
                   />
+                  <span className="text-xs text-center mt-1 text-gray-700 dark:text-white/80 font-semibold block">
+                    {title}
+                  </span>
                 </motion.li>
               );
             })}
