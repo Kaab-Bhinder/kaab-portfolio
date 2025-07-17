@@ -25,3 +25,9 @@
 .group:hover .group-hover\:rotate-y-180 {
   transform: rotateY(180deg);
 }
+
+html,
+body {
+  overflow-x: hidden !important;
+  max-width: 100vw;
+}
