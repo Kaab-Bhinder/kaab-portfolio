@@ -76,7 +76,7 @@ const Contact = () => {
                 target="_blank"
                 className="text-lg text-gray-700 dark:text-gray-300 underline"
               >
-                LinkedIn Profile
+                LinkedIn Profilewofwflhwogit9ofhw
               </a>
             </div>
           </div>
