@@ -33,7 +33,7 @@ const About = ({ isDarkMode }) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.5 }}
-        className="flex  align-items: flex-start justify-start w-full flex-col lg:flex-row  gap-20 my-20 "
+        className="flex flex-col items-center justify-center w-full lg:flex-row lg:items-start lg:justify-start gap-20 my-20"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}

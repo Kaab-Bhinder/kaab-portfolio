@@ -11,7 +11,7 @@ const Work = ({ isDarkMode }) => {
       initial={{ opacity: 0 }}
       whileInView={{ opacity: 1 }}
       transition={{ duration: 1 }}
-      className="w-full px-[12%] py-10 scroll-mt-20"
+      className="w-full px-2 sm:px-8 md:px-[12%] py-10 scroll-mt-20"
       id="work"
     >
       <motion.h4
@@ -45,7 +45,7 @@ const Work = ({ isDarkMode }) => {
         initial={{ opacity: 0 }}
         whileInView={{ opacity: 1 }}
         transition={{ duration: 0.9, delay: 0.6 }}
-        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 my-10 dark:text-black"
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 my-10 mx-auto dark:text-black"
       >
         {workData.map((project, ind) => {
           return (
