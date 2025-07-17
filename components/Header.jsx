@@ -11,11 +11,12 @@ const Header = () => {
         initial={{ scale: 0 }}
         whileInView={{ scale: 1 }}
         transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
+        className="mt-24 sm:mt-28"
       >
         <Image
           src={assets.profile_img}
           alt=""
-          className="w-32 mt-20 h-32 rounded-full object-cover"
+          className="w-32 h-32 rounded-full object-cover"
         ></Image>
       </motion.div>
       <motion.h3
