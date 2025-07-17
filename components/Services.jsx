@@ -46,7 +46,7 @@ const Services = () => {
         transition={{ duration: 0.9, delay: 0.6 }}
         className="grid grid-cols-auto gap-6 my-10 sm:"
       >
-        {serviceData.map(({ icon, title, description, link }, index) => {
+        {serviceData.map(({ icon, title, description }, index) => {
           return (
             <motion.div
               whileHover={{ scale: 1.05 }}
@@ -60,10 +60,6 @@ const Services = () => {
               <p className="dark:text-white/80 text-sm text-gray-600 leading-5">
                 {description}
               </p>
-              <a className="flex items-center gap-2 text-sm mt-5 " href={link}>
-                Read More
-                <Image alt="" src={assets.right_arrow} className="w-4" />
-              </a>
             </motion.div>
           );
         })}

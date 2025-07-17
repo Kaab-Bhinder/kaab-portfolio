@@ -111,35 +111,37 @@ const About = ({ isDarkMode }) => {
           >
             Tools I use
           </motion.h4>
-          <motion.ul
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
-            transition={{ duration: 0.6, delay: 1.5 }}
-            className="flex flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 max-w-2xl mx-auto mt-6 mb-2"
-          >
-            {toolsData.map(({ tool, title }, ind) => {
-              return (
-                <motion.li
-                  whileHover={{
-                    scale: 1.08,
-                    boxShadow: "0 0 16px 2px rgba(80,120,255,0.25)",
-                  }}
-                  className="flex flex-col items-center justify-center w-16 h-16 sm:w-20 sm:h-20 rounded-xl border border-gray-400 cursor-pointer bg-white dark:bg-[#18192a] dark:border-white shadow-md hover:shadow-lg transition-all duration-300"
-                  key={ind}
-                >
-                  <Image
-                    src={tool}
-                    alt="Tool"
-                    title={title}
-                    className="w-8 sm:w-10 mb-1"
-                  />
-                  <span className="text-xs text-center mt-1 text-gray-700 dark:text-white/80 font-semibold block">
-                    {title}
-                  </span>
-                </motion.li>
-              );
-            })}
-          </motion.ul>
+          <div className="w-full flex justify-center">
+            <motion.ul
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.6, delay: 1.5 }}
+              className="flex flex-row flex-wrap justify-center items-center gap-4 sm:gap-6 md:gap-8 max-w-2xl mx-auto mt-6 mb-2 p-4 rounded-2xl border border-gray-300 dark:border-white/20"
+            >
+              {toolsData.map(({ tool, title }, ind) => {
+                return (
+                  <motion.li
+                    whileHover={{
+                      scale: 1.12,
+                      boxShadow: "0 4px 24px 0 rgba(80,120,255,0.10)",
+                    }}
+                    className="flex flex-col items-center justify-center w-20 h-20 sm:w-24 sm:h-24 rounded-xl border border-gray-300 dark:border-white/20 cursor-pointer bg-white/70 dark:bg-[#23243a]/30 shadow-md hover:shadow-xl transition-all duration-300"
+                    key={ind}
+                  >
+                    <Image
+                      src={tool}
+                      alt="Tool"
+                      title={title}
+                      className="w-10 sm:w-12 mb-1"
+                    />
+                    <span className="text-xs text-center mt-1 text-gray-700 dark:text-white/80 font-semibold block">
+                      {title}
+                    </span>
+                  </motion.li>
+                );
+              })}
+            </motion.ul>
+          </div>
         </motion.div>
       </motion.div>
     </motion.div>
