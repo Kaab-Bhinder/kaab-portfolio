@@ -55,108 +55,88 @@ const Work = ({ isDarkMode }) => {
         {workData.map((project, ind) => {
           const isFlipped = isMobile && flippedIndex === ind;
           return (
-            <motion.div
-              onClick={() =>
-                isMobile && setFlippedIndex(isFlipped ? null : ind)
-              }
-              whileHover={
-                !isMobile
-                  ? {
-                      scale: 1.04,
-                      y: -8,
-                      boxShadow: "0 8px 32px 0 rgba(31, 38, 135, 0.15)",
-                    }
-                  : {}
-              }
-              transition={{ duration: 0.35, type: "spring", stiffness: 120 }}
-              className="relative group rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-[#18192a] border border-gray-200 dark:border-gray-700 flex flex-col items-center justify-end min-h-[390px] h-full transition-all duration-300 hover:border-blue-400 dark:hover:border-blue-300"
+            <div
+              className="relative group perspective w-full h-[390px]"
               key={ind}
             >
-              <div className="group perspective w-full h-full">
-                <motion.div
-                  className={`relative w-full h-full preserve-3d transition-transform ${
-                    isMobile
-                      ? isFlipped
-                        ? "rotate-y-180"
-                        : ""
-                      : "group-hover:rotate-y-180"
-                  }`}
-                  style={{ minHeight: 390 }}
+              <motion.div
+                className={`relative w-full h-full preserve-3d transition-transform ${
+                  isMobile
+                    ? isFlipped
+                      ? "rotate-y-180"
+                      : ""
+                    : "group-hover:rotate-y-180"
+                }`}
+                style={{
+                  minHeight: 390,
+                  height: "100%",
+                  transformStyle: "preserve-3d",
+                }}
+              >
+                {/* Front Face */}
+                <div
+                  className="absolute top-0 left-0 w-full h-full rounded-2xl shadow-lg bg-white dark:bg-[#18192a] border border-gray-200 dark:border-gray-700 flex flex-col justify-between backface-hidden pb-8"
+                  style={{
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
                 >
-                  {/* Front Face */}
-                  <div className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-[#18192a] border border-gray-200 dark:border-gray-700 flex flex-col items-center justify-end backface-hidden">
-                    <Image
-                      src={project.bgImage}
-                      alt={project.title}
-                      width={400}
-                      height={240}
-                      className="object-cover w-full h-48 transition-transform duration-500"
-                    />
-                    <div className="relative z-20 p-5 w-full flex flex-col items-center justify-center text-center">
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        <h2 className="font-bold text-lg text-gray-900 dark:text-white mb-2 drop-shadow-lg hover:underline">
-                          {project.title}
-                        </h2>
-                      </a>
-                      <p className="text-sm text-gray-700 dark:text-gray-200 mb-4 drop-shadow">
-                        {project.description}
-                      </p>
-                      {isMobile && (
-                        <span className="block text-base font-bold text-blue-600 mt-2 border-t border-blue-200 pt-2">
-                          Tap to see more
-                        </span>
-                      )}
-                      <a
-                        href={project.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-2 px-4 py-2 border rounded-full border-gray-500 dark:bg-white dark:text-black transition-all duration-300 hover:bg-blue-100 dark:hover:bg-gray-800 mt-2"
-                      >
-                        View Project
-                        <Image
-                          src={assets.send_icon}
-                          alt="send icon"
-                          width={20}
-                          height={20}
-                        />
-                      </a>
-                    </div>
+                  <Image
+                    src={project.bgImage}
+                    alt={project.title}
+                    width={400}
+                    height={240}
+                    className="object-cover w-full h-48 transition-transform duration-500"
+                  />
+                  <div className="relative z-20 p-5 w-full flex flex-col items-center justify-center text-center flex-1">
+                    <a
+                      href={project.link}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      <h2 className="font-bold text-lg text-gray-900 dark:text-white mb-2 drop-shadow-lg hover:underline">
+                        {project.title}
+                      </h2>
+                    </a>
+                    <p className="text-sm text-gray-700 dark:text-gray-200 mb-4 drop-shadow">
+                      {project.description}
+                    </p>
+                    {isMobile && (
+                      <span className="block text-base font-bold text-blue-600 mt-2 border-t border-blue-200 pt-2">
+                        Tap to see more
+                      </span>
+                    )}
                   </div>
-                  {/* Back Face */}
-                  <div
-                    className="absolute inset-0 w-full h-full rounded-2xl overflow-hidden shadow-lg bg-white dark:bg-[#18192a] border border-blue-400 dark:border-blue-300 flex flex-col items-center justify-center backface-hidden p-6"
-                    style={{ transform: "rotateY(180deg)" }}
-                  >
+                </div>
+                {/* Back Face */}
+                <div
+                  className="absolute top-0 left-0 w-full h-full rounded-2xl shadow-lg bg-white dark:bg-[#18192a] border border-blue-400 dark:border-blue-300 flex flex-col justify-between p-6 backface-hidden pb-8"
+                  style={{
+                    transform: "rotateY(180deg)",
+                    backfaceVisibility: "hidden",
+                    WebkitBackfaceVisibility: "hidden",
+                  }}
+                >
+                  <div className="flex-1 flex flex-col items-center justify-center text-center">
                     <h2 className="font-bold text-lg text-blue-700 dark:text-blue-300 mb-2 text-center">
                       {project.title}
                     </h2>
                     <p className="text-gray-700 dark:text-gray-200 mb-6 text-center">
                       {project.details}
                     </p>
-                    <a
-                      href={project.link}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="z-20"
-                    >
-                      <button className="inline-flex items-center gap-2 px-4 py-2 border rounded-full border-gray-500 dark:bg-white dark:text-black transition-all duration-300 hover:bg-blue-100 dark:hover:bg-gray-800">
-                        View Project
-                        <Image
-                          src={assets.send_icon}
-                          alt="send icon"
-                          width={20}
-                          height={20}
-                        />
-                      </button>
-                    </a>
                   </div>
-                </motion.div>
-              </div>
-            </motion.div>
+                </div>
+              </motion.div>
+              {/* Stationary View Project Button */}
+              <a
+                href={project.link}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="absolute left-1/2 -translate-x-1/2 bottom-4 z-30 inline-flex items-center gap-2 px-3 py-1 border rounded-full border-gray-500 hover:border-blue-500 dark:hover:border-blue-400 dark:bg-white dark:text-black bg-white transition-all duration-300 shadow cursor-pointer"
+              >
+                View Project
+              </a>
+            </div>
           );
         })}
       </motion.div>
